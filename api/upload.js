@@ -39,7 +39,8 @@ export default async function handler(req) {
 
   } catch (error) {
     console.error('Error in upload handler:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    // INI BAGIAN YANG KITA UBAH UNTUK TES
+    return new Response(JSON.stringify({ error: `[VERSI TES TERBARU] - Terjadi masalah: ${error.message}` }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
