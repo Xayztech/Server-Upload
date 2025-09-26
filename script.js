@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('file-input');
     const resultDiv = document.getElementById('result');
 
+    // Klik area upload untuk membuka pilihan file
     uploadArea.addEventListener('click', () => fileInput.click());
 
+    // Menangani ketika file dipilih
     fileInput.addEventListener('change', (event) => {
         const files = event.target.files;
         if (files.length > 0) {
@@ -12,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Menangani drag and drop
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         uploadArea.addEventListener(eventName, preventDefaults, false);
     });
@@ -37,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleFiles(files) {
         const file = files[0];
+        // Validasi ukuran file (5 MB)
         if (file.size > 5 * 1024 * 1024) {
             showResult('error', 'Gagal: Ukuran file melebihi 5 MB.');
             return;
@@ -64,7 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             
             if (data.url) {
-                const link = `https://telegra.ph${data.url}`;
+                // ==========================================================
+                //  PERUBAHAN DI SINI: Kita langsung gunakan data.url
+                //  karena sudah berisi link yang lengkap dari pixhost.
+                // ==========================================================
+                const link = data.url;
+
                 showResult('success', `
                     Berhasil! Link file Anda:
                     <br>
@@ -84,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resultDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
     }
 
+    // Fungsi untuk menyalin link
     window.copyToClipboard = (text) => {
         navigator.clipboard.writeText(text).then(() => {
             alert('Link berhasil disalin!');
@@ -92,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Logika untuk Modal Tutorial
     const modal = document.getElementById('tutorial-modal');
     const btn = document.getElementById('tutorial-btn');
     const span = document.getElementsByClassName('close-btn')[0];
