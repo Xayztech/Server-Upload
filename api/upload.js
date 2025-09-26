@@ -11,26 +11,17 @@ export default async function handler(req) {
   }
 
   try {
-    const formData = await req.formData();
-    const file = formData.get('file');
-
-    if (!file) {
-      return new Response(JSON.stringify({ error: 'File tidak ditemukan' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    const uploadFormData = new FormData();
-    uploadFormData.append('file', file, file.name);
-
     const response = await fetch('https://telegra.ph/upload', {
       method: 'POST',
-      body: uploadFormData,
+      body: req.body,
+      headers: {
+        'Content-Type': req.headers.get('Content-Type'),
+      },
     });
 
     if (!response.ok) {
-      throw new Error(`Gagal mengunggah ke telegra.ph: ${response.statusText}`);
+      const errorText = await response.text();
+      throw new Error(`Gagal mengunggah ke telegra.ph: ${response.statusText} (${response.status}). Respons server: ${errorText}`);
     }
 
     const result = await response.json();
