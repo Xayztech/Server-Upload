@@ -23,14 +23,15 @@ export default async function handler(req) {
 
     const newFormData = new FormData();
     newFormData.append('img[]', file);
-    newFormData.append('content_type', '0'); // 0 = Konten Aman (Safe for Work)
+    newFormData.append('content_type', '0'); 
     newFormData.append('max_th_size', '400');
 
+    // Menggunakan domain .to kembali sesuai informasi dari Anda
     const response = await fetch('https://pixhost.to/upload', {
       method: 'POST',
       body: newFormData,
       headers: {
-        'Accept': 'application/json',
+        'Accept': '*/*', 
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
       },
     });
