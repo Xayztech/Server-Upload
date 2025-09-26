@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Server Upload Assistant | Unggah Cepat ke Server Media!</title>
+    
+    <meta name="description" content="Alat sederhana, cepat, dan modern untuk mengunggah gambar (JPG, PNG, GIF) dan video (MP4) langsung ke Telegra.ph. Dapatkan link secara instan!">
+    
+    <meta property="og:url" content="https://xayzupload.vercel.app/"> 
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Server Upload Assistant">
+    <meta property="og:description" content="Unggah gambar dan video ke Telegra.ph dengan mudah dan cepat.">
+    <meta property="og:image" content="https://xayzupload.vercel.app/assets/preview.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="xayzupload.vercel.app">
+    <meta property="twitter:url" content="https://xayzupload.vercel.app/">
+    <meta name="twitter:title" content="Server Upload Assistant">
+    <meta name="twitter:description" content="Unggah gambar dan video ke Telegra.ph dengan mudah dan cepat.">
+    <meta name="twitter:image" content="https://xayzupload.vercel.app/assets/preview.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <button id="tutorial-btn">?</button>
+
+    <div id="tutorial-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>📝 Tutorial Penggunaan</h2>
+            <p>Selamat datang di Server Upload Assistant! Alat ini membantumu mengunggah file ke Telegra.ph dengan mudah.</p>
+            
+            <h4>Langkah-langkah:</h4>
+            <ol>
+                <li><strong>Pilih File:</strong> Klik atau seret file ke dalam kotak putus-putus di tengah layar.</li>
+                <li><strong>Jenis File yang Didukung:</strong> Kamu bisa mengunggah gambar (JPG, PNG, GIF) atau video (MP4).</li>
+                <li><strong>Ukuran Maksimal:</strong> Pastikan ukuran file tidak lebih dari 5 MB.</li>
+                <li><strong>Proses Unggah:</strong> Setelah memilih file, proses unggah akan dimulai secara otomatis. Mohon tunggu sejenak.</li>
+                <li><strong>Dapatkan Link:</strong> Jika berhasil, sebuah link akan muncul di bawah kotak unggah. Klik tombol "Salin Link" untuk menyalinnya.</li>
+                <li><strong>Jika Gagal:</strong> Jika ada masalah (misalnya file terlalu besar atau format tidak didukung), sebuah pesan kesalahan akan muncul.</li>
+            </ol>
+            <p>Sangat mudah, bukan? Selamat mencoba!</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Server Upload Assistant</h1>
+        <p>Unggah gambar (JPG, PNG, GIF) dan video (MP4) ke Telegra.ph</p>
+        
+        <div class="upload-area" id="upload-area">
+            <input type="file" id="file-input" hidden>
+            <div class="upload-icon">📤</div>
+            <p>Seret & lepas file di sini, atau <strong>klik untuk memilih file</strong></p>
+            <small>Ukuran file maksimal: 5MB</small>
+        </div>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
